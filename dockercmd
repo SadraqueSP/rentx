@@ -1,0 +1,24 @@
+# Builds a docker image
+docker build -t rentx .
+
+# Run the image
+docker run -p 3333:3333 rentx
+
+# Enter the container
+docker exec -it rentx /bin/bash
+
+
+# Build the container using docker-compose (-d option makes the container run in background)
+docker-compose up -d | docker-compose up --force-recreate
+
+  # Stop docker compose
+  docker-compose stop
+
+  # Removes everything created by docker compose
+  docker-compose down
+
+# To show the log 
+docker logs rentx -f
+
+# check the container IP address
+docker inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' rentx
